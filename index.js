@@ -1,48 +1,74 @@
-function start() {
+const BadApplePlayer = (function() {
 
   const audio = new Audio("song.mp3");
-  const delay = 60;
+  const tickMs = 40;
+  const player = document.getElementById("player");
 
   let frame = 0;
   let root = document.createElement("div");
+  let playing = false;
 
+  /**
+   * Creates a checkbox from a specified number representing
+   * the "pixel" to be shown.
+   * @param {number} n Pixel
+   * @returns {HTMLElement} The checkbox element
+   */
   function elementFrom(n) {
     const e = document.createElement("input");
     e.type = "checkbox";
-    switch (n) {
-      case 0:
-        e.checked = true;
-        break;
-      case 1:
-        e.checked = false;
-        break;
-      case 2:
-        e.checked = true;
-        e.disabled = true;
-        break;
-    }
+    e.disabled = n == 2;
+    e.checked = n > 0;
     return e;
   }
 
   function draw() {
     root.remove();
     root = document.createElement("div");
-
     const data = frames[frame];
-    for (const a of data) {
-      const r = document.createElement("div");
-      for (const b of a) {
-        const e = elementFrom(b);
-        r.appendChild(e);
+
+    for (const rowData of data) {
+      const row = document.createElement("div");
+      for (const pixel of rowData) {
+        row.appendChild(elementFrom(pixel));
       }
-      root.appendChild(r);
+      root.appendChild(row);
     }
 
-    document.body.appendChild(root);
+    player.appendChild(root);
     frame++;
-    setTimeout(draw, delay);
+
+    if (playing) {
+      setTimeout(draw, tickMs);
+    }
   }
 
-  draw();
-  audio.play();
-}
+  /**
+   * Plays bad apple.
+   */
+  function play() {
+
+    if (playing) {
+      // already being played
+      return;
+    }
+    
+    audio.play();
+    playing = true;
+    draw();
+  }
+
+  /**
+   * Pauses bad apple.
+   */
+  function pause() {
+    audio.pause();
+    playing = false;
+  }
+
+  // expose methods
+  return {
+    play,
+    pause
+  };
+})();

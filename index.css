@@ -1,0 +1,50 @@
+* {
+    font-family: sans-serif;
+    color: white;
+}
+
+body {
+    background-color: rgb(21, 25, 29);
+    margin: 0;
+}
+
+h1 {
+    text-align: center;
+    margin: 30px;
+}
+
+/* Controls */
+.controls {
+    width: max-content;
+    margin: 20px auto;
+}
+
+.controls button {
+
+    font-size: 16px;
+    padding: 10px 20px;
+
+    border: none;
+    background-color: #ffffff11;
+
+    cursor: pointer;
+}
+
+.controls button:hover {
+    background-color: #ffffff1f;
+}
+
+/* Player */
+#player {
+    width: max-content;
+    margin: auto;
+
+    background-color: #fff;
+    filter: drop-shadow(0 0 20px #ffffff44);
+}
+
+/* Footer */
+footer {
+    width: max-content;
+    margin: 30px auto;
+}

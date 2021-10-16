@@ -1,11 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="data.js" async></script>
-<script src="index.js" async></script>
-<title>Bad Apple</title>
+    <script src="data.js" async></script>
+    <script src="index.js" async></script>
+    <link rel="stylesheet" href="index.css">
+    <title>Bad Apple</title>
 </head>
 <body>
-    <button onclick="start()">Start</button>
+    <header>
+        <h1>Bad Apple</h1>
+    </header>
+
+    <!-- Controls -->
+    <div class="controls">
+        <button onclick="BadApplePlayer.play()">Start</button>
+        <button onclick="BadApplePlayer.pause()">Pause</button>
+    </div>
+
+    <!-- Player -->
+    <div id="player">
+    </div>
+
+    <footer>
+        <a href="https://github.com/yusshu/bad-apple/">Source</a> 
+        - <a href="https://paypal.me/yushu7u7">Donate</a>
+    </footer>
 </body>
 </html>
